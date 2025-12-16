@@ -1,8 +1,11 @@
+const userList = document.getElementById("userList");
+const loginForm = document.getElementById("loginForm");
+const userForm = document.getElementById("userForm");
+
 let users = [
   { id: 1, name: "Mario", email: "mario@test.it", role: "admin" }
 ];
 
-const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -10,7 +13,6 @@ if (loginForm) {
   });
 }
 
-const userList = document.getElementById("userList");
 if (userList) {
   renderUsers();
 }
@@ -25,16 +27,18 @@ function renderUsers() {
   });
 }
 
+//navigation func
 function goToCreate() {
   window.location.href = "user-form.html";
 }
 
+//edit utente func
 function editUser(id) {
   localStorage.setItem("editUserId", id);
   window.location.href = "user-form.html";
 }
 
-const userForm = document.getElementById("userForm");
+//form 
 if (userForm) {
   const editId = localStorage.getItem("editUserId");
   if (editId) {
@@ -44,9 +48,10 @@ if (userForm) {
     document.getElementById("role").value = user.role;
   }
 
+//submit
   userForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("Salvato (finto)");
+    alert("Salvato con successo!");
     localStorage.removeItem("editUserId");
     window.location.href = "dashboard.html";
   });
